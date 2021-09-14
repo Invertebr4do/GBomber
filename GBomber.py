@@ -107,7 +107,6 @@ def sendSpam():
 
 			except:
 				log.failure("Failed to send, try again")
-				break
 				if threading.activeCount() > 1:
 					os.system("tput cnorm")
 					os._exit(getattr(os, "_exitcode", 0))
