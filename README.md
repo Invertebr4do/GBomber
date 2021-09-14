@@ -1,6 +1,6 @@
 # GBomb
 Gmail spamer
-<h1>GBomb</h1>
+
 Script hecho en python creado para la automatización de envío masivo de mails <b>(solo gmail)</b>
 
 ## Antes de usarla
