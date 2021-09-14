@@ -17,7 +17,7 @@ git clone https://github.com/Invertebr4do/GBomber
 ```
 cd GBomber && chmod +x GBomber.sh
 ```
-- Y ejecutamos GBomb.sh
+- Y ejecutamos GBomber.sh
 
 ```
 ./GBomber.sh
