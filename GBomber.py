@@ -70,6 +70,7 @@ if len(password.rstrip()) < 1:
 if int(m_t) < 1:
 	m_t = 1
 
+print("\n")
 print(colors.PURPLE + "-"*80 + "\n" + colors.END)
 
 p1 = log.progress("Emails sent")
@@ -98,11 +99,22 @@ def sendSpam():
 
 			except smtplib.SMTPAuthenticationError:
 				print("\n" + colors.RED + "-"*80 + "\n█ Email or Password incorrect\n\n" + colors.YELLOW + "█ " + colors.GRAY +  "If your credentials are correct, enable less secure apps permisions " + colors.YELLOW + "█\n\n" + colors.RED + "█" + colors.GRAY + " Gmail" + colors.YELLOW + " >> " + colors.GRAY + "https://myaccount.google.com/lesssecureapps\n" + colors.PURPLE + "█" + colors.GRAY + " Yahoo" + colors.YELLOW + " >> " + colors.GRAY + "https://login.yahoo.com/account/security" + colors.END)
-				sys.exit(1)
+				if threading.activeCount() > 1:
+					os.system("tput cnorm")
+					os._exit(getattr(os, "_exitcode", 0))
+				else:
+					os.system("tput cnorm")
+					sys.exit(getattr(os, "_exitcode", 0))
 
 			except:
 				log.failure("Failed to send, try again")
-				sys.exit(1)
+				break
+				if threading.activeCount() > 1:
+					os.system("tput cnorm")
+					os._exit(getattr(os, "_exitcode", 0))
+				else:
+					os.system("tput cnorm")
+					sys.exit(getattr(os, "_exitcode", 0))
 
 	p1.success("%d" % emails)
 	sys.exit(0)
