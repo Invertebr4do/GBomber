@@ -1,11 +1,13 @@
 # GBomber
 Gmail spamer
 
-Script hecho en python creado para la automatización de envío masivo de mails <b>(solo gmail)</b>
+Script hecho en python creado para la automatización de envío masivo de mails
 
 ## Antes de usarla
-> Debes tener una cuenta de gmail, preferiblemente creada solo para este tipo de cosas, una vez la tengas debes ingresar en el siguiente sitio: https://myaccount.google.com/lesssecureapps , y activar la opción de aplicaciones poco seguras.
-Esto para que no nos de problemas al momento de usarla
+> Debes tener una cuenta de (gmail / outlook / hotmail / yahoo), preferiblemente creada solo para este tipo de cosas, una vez la tengas debes activar la opción de aplicaciones poco seguras en donde corresponda:
+- **Gmail** >> https://myaccount.google.com/lesssecureapps
+- **Yahoo** >> https://login.yahoo.com/account/security
+> Esto para que no nos de problemas al momento de usarla.
 
 ## Instalación:
 - Clonamos el repositorio
