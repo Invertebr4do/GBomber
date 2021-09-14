@@ -46,13 +46,13 @@ if '@' not in from_address or '@' not in to_address:
         print(colors.RED + "\n[-] Invalid email address" + colors.END)
         sys.exit(1)
 
-elif 'gmail.' in from_address or 'gmail.' in to_address:
+elif 'gmail.' in from_address:
         WEmail = "smtp.gmail.com"
 
-elif 'hotmail.' in from_address or 'outlook.' in from_address or 'hotmail.' in to_address or 'outlook.' in to_address:
+elif 'hotmail.' in from_address or 'outlook.' in from_address:
         WEmail = "smtp-mail.outlook.com"
 
-elif 'yahoo.' in from_address or 'yahoo.' in to_address:
+elif 'yahoo.' in from_address:
         WEmail = "smtp.mail.yahoo.com"
 
 else:
