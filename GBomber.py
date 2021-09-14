@@ -70,8 +70,7 @@ if len(password.rstrip()) < 1:
 if int(m_t) < 1:
 	m_t = 1
 
-print("\n")
-print(colors.PURPLE + "-"*80 + "\n" + colors.END)
+print("\n" + colors.PURPLE + "-"*80 + "\n" + colors.END)
 
 p1 = log.progress("Emails sent")
 p2 = log.progress("Email content")
