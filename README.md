@@ -1,4 +1,4 @@
-# GBomb
+# GBomber
 Gmail spamer
 
 Script hecho en python creado para la automatización de envío masivo de mails <b>(solo gmail)</b>
@@ -10,17 +10,17 @@ Esto para que no nos de problemas al momento de usarla
 ## Instalación:
 - Clonamos el repositorio
 ```
-git clone https://github.com/Invertebr4do/GBomb
+git clone https://github.com/Invertebr4do/GBomber
 ```
 - Nos metemos en el directorio, asignamos permisos de ejecución a la herramienta
 
 ```
-cd GBomb && chmod +x GBomb.sh
+cd GBomber && chmod +x GBomber.sh
 ```
 - Y ejecutamos GBomb.sh
 
 ```
-./GBomb.sh
+./GBomber.sh
 ```
 [![Herramienta](https://github.com/Invertebr4do/GBomb/blob/main/bomber.png?raw=true "Herramienta")](https://github.com/Invertebr4do/GBomb/blob/main/bomber.png?raw=true "Herramienta")
 
