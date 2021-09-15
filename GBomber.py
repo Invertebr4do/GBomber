@@ -106,7 +106,9 @@ def sendSpam():
 					sys.exit(getattr(os, "_exitcode", 0))
 
 			except:
-				log.failure("Failed to send, try again")
+				log.failure("Failed to send more, try again")
+                                p1.success("%d" % emails)
+                                p2.success("%s" % c)
 				if threading.activeCount() > 1:
 					os.system("tput cnorm")
 					os._exit(getattr(os, "_exitcode", 0))
