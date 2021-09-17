@@ -17,9 +17,9 @@ git clone https://github.com/Invertebr4do/GBomber
 - Nos metemos en el directorio, asignamos permisos de ejecución a la herramienta
 
 ```
-cd GBomber && chmod +x GBomber.sh
+cd GBomber && chmod +x GBomber.py
 ```
-- Y ejecutamos GBomber.sh
+- Y ejecutamos GBomber.py
 
 ```
 ./GBomber.sh
