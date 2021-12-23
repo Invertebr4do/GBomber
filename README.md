@@ -22,7 +22,7 @@ cd GBomber && chmod +x GBomber.py
 - Y ejecutamos GBomber.py
 
 ```
-./GBomber.sh
+./GBomber.py
 ```
 [![Herramienta](https://github.com/Invertebr4do/GBomb/blob/main/bomber.png?raw=true "Herramienta")](https://github.com/Invertebr4do/GBomb/blob/main/bomber.png?raw=true "Herramienta")
 
