@@ -25,7 +25,7 @@ def banner():
 def def_handler(sig, frame):
 	print(colors.RED + "\n[!] Exiting..." + colors.END)
 
-	if threading.activeCount() > 1:
+	if threading.active_count() > 1:
 		os.system("tput cnorm")
 		os._exit(getattr(os, "_exitcode", 0))
 	else:
@@ -98,7 +98,7 @@ def sendSpam():
 
 			except smtplib.SMTPAuthenticationError:
 				print("\n" + colors.RED + "-"*80 + "\n█ Email or Password incorrect\n\n" + colors.YELLOW + "█ " + colors.GRAY +  "If your credentials are correct, enable less secure apps permisions " + colors.YELLOW + "█\n\n" + colors.RED + "█" + colors.GRAY + " Gmail" + colors.YELLOW + " >> " + colors.GRAY + "https://myaccount.google.com/lesssecureapps\n" + colors.PURPLE + "█" + colors.GRAY + " Yahoo" + colors.YELLOW + " >> " + colors.GRAY + "https://login.yahoo.com/account/security" + colors.END)
-				if threading.activeCount() > 1:
+				if threading.active_count() > 1:
 					os.system("tput cnorm")
 					os._exit(getattr(os, "_exitcode", 0))
 				else:
@@ -109,7 +109,7 @@ def sendSpam():
 				log.failure("Failed to send more, try again")
                                 p1.success("%d" % emails)
                                 p2.success("%s" % c)
-				if threading.activeCount() > 1:
+				if threading.active_count() > 1:
 					os.system("tput cnorm")
 					os._exit(getattr(os, "_exitcode", 0))
 				else:
